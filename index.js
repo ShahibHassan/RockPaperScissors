@@ -1,90 +1,127 @@
-// gets user input
-function PlayerPlay() {
-  const ask = prompt("Choose your weapon! ").toUpperCase();
-  return ask;
-}
+const game = () => {
+  let playerScore = 0;
+  let computerScore = 0;
 
-// get the computer choice
-function getComputerChoice() {
-  const options = ["ROCK", "PAPER", "SCISSORS"];
-  const randomElement = options[Math.floor(Math.random() * options.length)];
-  return randomElement;
-}
+  function playGame() {
+    const rockbtn = document.querySelector(".rock");
+    const paperbtn = document.querySelector(".paper");
+    const scissorsbtn = document.querySelector(".scissors");
+    const playerChoices = [rockbtn, paperbtn, scissorsbtn];
+    const computerChoices = ["Rock", "Paper", "Scissors"];
 
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection == "ROCK") {
-    switch (computerSelection) {
-      case "PAPER":
-        return "computer";
+    // Fucntion to start playing the game
+    playerChoices.forEach((option) => {
+      option.addEventListener("click", function () {
+        console.log(this.innerText);
 
-      case "SCISSORS":
-        return "player";
+        //calculates the computers choice randomly
+        const computerChoice =
+          computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-      case "ROCK":
-        return "draw";
-    }
-  } else if (playerSelection == "PAPER") {
-    switch (computerSelection) {
-      case "ROCK":
-        return "player";
+        // checks to see who wins the round
+        console.log("this.innerText = " + this.innerText);
+        console.log("computer choice: " + computerChoice);
+        const result = winner(this.innerText, computerChoice);
 
-      case "SCISSORS":
-        return "computer";
-
-      case "PAPER":
-        return "draw";
-    }
-  } else if (playerSelection == "SCISSORS") {
-    switch (computerSelection) {
-      case "ROCK":
-        return "computer";
-
-      case "PAPER":
-        return "player";
-
-      case "SCISSORS":
-        return "draw";
-    }
-  }
-}
-
-let playerScore = 0;
-let computerScore = 0;
-
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = PlayerPlay();
-    const computerSelection = getComputerChoice();
-    let result = playRound(playerSelection, computerSelection);
-
-    if (result === "player") {
-      playerScore++;
-      alert(
-        "You won this round, you have " +
-          playerScore +
-          "points. Computer has " +
-          computerScore +
-          " points."
-      );
-    } else if (result === "draw") {
-      alert("Tie, you both picked the same option. Try Again!");
-    } else {
-      computerScore++;
-      alert(
-        "You have lost this round, you have " +
-          playerScore +
-          ". Computer has " +
-          computerScore +
-          " points."
-      );
-    }
+        // end game after 5 rounds
+      });
+    });
   }
 
-  if (computerScore > playerScore) {
-    alert("GAME OVER! YOU LOST");
-  } else if (computerScore == playerScore) {
-    alert("It's a Draw!");
-  } else {
-    alert("GAME OVER! YOU WIN");
+  function winner(player, computer) {
+    const result = document.querySelector(".result");
+    const pScore = document.querySelector(".playerCount");
+    const cScore = document.querySelector(".computerCount");
+
+    if (player == "Rock") {
+      switch (computer) {
+        case "Rock":
+          //return "tie";
+          result.textContent = "You have Tied";
+          result.style.color = "yellow";
+          result.style.display = "block";
+          break;
+        case "Paper":
+          //return "computer";
+          result.textContent = "Computer Wins the round!";
+          result.style.color = "red";
+          result.style.display = "block";
+          computerScore++;
+          cScore.textContent = computerScore;
+          break;
+
+        case "Scissors":
+          //return "player";
+          result.textContent = "You Win the round!";
+          result.style.color = "green";
+          result.style.display = "block";
+          playerScore++;
+          pScore.textContent = playerScore;
+          break;
+      }
+    } else if (player == "Paper") {
+      switch (computer) {
+        case "Rock":
+          //return "player";
+          result.textContent = "You Win the round!";
+          result.style.color = "green";
+          result.style.display = "block";
+          playerScore++;
+          pScore.textContent = playerScore;
+          break;
+
+        case "Paper":
+          //return "tie";
+          result.textContent = "You have Tied";
+          result.style.color = "yellow";
+          result.style.display = "block";
+          break;
+
+        case "Scissors":
+          //return "computer";
+          result.textContent = "Computer Wins the round!";
+          result.style.color = "red";
+          result.style.display = "block";
+          computerScore++;
+          cScore.textContent = computerScore;
+          break;
+      }
+    } else if (player == "Scissors") {
+      switch (computer) {
+        case "Rock":
+          //return "computer";
+          result.textContent = "Computer Wins the round!";
+          result.style.color = "red";
+          result.style.display = "block";
+          computerScore++;
+          cScore.textContent = computerScore;
+          break;
+
+        case "Paper":
+          //return "player";
+          result.textContent = "You Win the round!";
+          result.style.color = "green";
+          result.style.display = "block";
+          playerScore++;
+          pScore.textContent = playerScore;
+          break;
+
+        case "Scissors":
+          // return "tie";
+          result.textContent = "You have Tied";
+          result.style.color = "yellow";
+          result.style.display = "block";
+          break;
+      }
+
+      if (result.textContent == "You have Tied") {
+        result.style.color = "yellow";
+      }
+    }
   }
-}
+
+  function reset() {}
+  playGame();
+};
+
+game();
