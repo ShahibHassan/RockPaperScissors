@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 
-#reset {
-    display: none;
-}
-
-.result {
-    display: none;
-} 
-
 body {
     background-image: url('./Images/low-poly-grid-haikei.svg');
     background-repeat: no-repeat;
@@ -18,7 +10,6 @@ body {
     font-family: 'Caveat', cursive;
 }
 .main {
-    padding-top: 20px;
     width: 100vw;
     margin: 0px;
 }
@@ -92,16 +83,29 @@ button{
     transition: .5s;
     width: 100%;
     margin: 10px;
+    border-radius: 20px
 }
 
 button:hover {
     background-color: blueviolet;
+    box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.5);;
     color: white;
 }
 
+#reset {
+    width: 15%;
+    display: flex;
+    margin: auto;
 
+}
 
-
+.winner {
+    text-align: center;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 50px ;
+    background-color: black;
+}
 
 
 

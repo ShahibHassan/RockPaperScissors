@@ -10,6 +10,7 @@ const game = () => {
     const computerChoices = ["Rock", "Paper", "Scissors"];
     const winnerDiv = document.querySelector(".winner");
     const resetBtn = document.querySelector("#reset");
+    const res = document.querySelector(".result");
 
     // Fucntion to start playing the game
     playerChoices.forEach((option) => {
@@ -35,11 +36,12 @@ const game = () => {
             winnerDiv.textContent = "Computer won the game!";
             winnerDiv.style.color = "red";
           }
-          winnerDiv.style.display = "block";
-          resetBtn.style.display = "block";
           scissorsbtn.style.display = "none";
           rockbtn.style.display = "none";
           paperbtn.style.display = "none";
+          winnerDiv.style.display = "block";
+          resetBtn.style.display = "block";
+          res.style.display = "none";
         }
 
         resetBtn.addEventListener("click", function () {
@@ -50,10 +52,10 @@ const game = () => {
           cScore.textContent = computerScore;
           pScore.textContent = playerScore;
           resetBtn.style.display = "none";
+          winnerDiv.style.display = "none";
           scissorsbtn.style.display = "block";
           rockbtn.style.display = "block";
           paperbtn.style.display = "block";
-          winnerDiv.style.display = "none";
         });
       });
     });
@@ -68,13 +70,13 @@ const game = () => {
       switch (computer) {
         case "Rock":
           //return "tie";
-          result.textContent = "You have Tied";
+          result.textContent = "Tie";
           result.style.color = "yellow";
           result.style.display = "block";
           break;
         case "Paper":
           //return "computer";
-          result.textContent = "Computer Wins the round!";
+          result.textContent = "Round Lost!";
           result.style.color = "red";
           result.style.display = "block";
           computerScore++;
@@ -83,7 +85,7 @@ const game = () => {
 
         case "Scissors":
           //return "player";
-          result.textContent = "You Win the round!";
+          result.textContent = "Round Won!";
           result.style.color = "green";
           result.style.display = "block";
           playerScore++;
@@ -94,7 +96,7 @@ const game = () => {
       switch (computer) {
         case "Rock":
           //return "player";
-          result.textContent = "You Win the round!";
+          result.textContent = "Round Won!";
           result.style.color = "green";
           result.style.display = "block";
           playerScore++;
@@ -103,14 +105,14 @@ const game = () => {
 
         case "Paper":
           //return "tie";
-          result.textContent = "You have Tied";
+          result.textContent = "Tie";
           result.style.color = "yellow";
           result.style.display = "block";
           break;
 
         case "Scissors":
           //return "computer";
-          result.textContent = "Computer Wins the round!";
+          result.textContent = "Round Lost!";
           result.style.color = "red";
           result.style.display = "block";
           computerScore++;
@@ -121,7 +123,7 @@ const game = () => {
       switch (computer) {
         case "Rock":
           //return "computer";
-          result.textContent = "Computer Wins the round!";
+          result.textContent = "Round Lost!";
           result.style.color = "red";
           result.style.display = "block";
           computerScore++;
@@ -130,7 +132,7 @@ const game = () => {
 
         case "Paper":
           //return "player";
-          result.textContent = "You Win the round!";
+          result.textContent = "Round Won!";
           result.style.color = "green";
           result.style.display = "block";
           playerScore++;
@@ -139,13 +141,13 @@ const game = () => {
 
         case "Scissors":
           // return "tie";
-          result.textContent = "You have Tied";
+          result.textContent = "Tie";
           result.style.color = "yellow";
           result.style.display = "block";
           break;
       }
 
-      if (result.textContent == "You have Tied") {
+      if (result.textContent == "Tie") {
         result.style.color = "yellow";
       }
     }
