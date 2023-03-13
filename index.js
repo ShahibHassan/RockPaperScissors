@@ -8,6 +8,8 @@ const game = () => {
     const scissorsbtn = document.querySelector(".scissors");
     const playerChoices = [rockbtn, paperbtn, scissorsbtn];
     const computerChoices = ["Rock", "Paper", "Scissors"];
+    const winnerDiv = document.querySelector(".winner");
+    const resetBtn = document.querySelector("#reset");
 
     // Fucntion to start playing the game
     playerChoices.forEach((option) => {
@@ -24,6 +26,35 @@ const game = () => {
         const result = winner(this.innerText, computerChoice);
 
         // end game after 5 rounds
+
+        if (playerScore === 5 || computerScore === 5) {
+          if (playerScore === 5) {
+            winnerDiv.textContent = "You won the game!";
+            winnerDiv.style.color = "green";
+          } else {
+            winnerDiv.textContent = "Computer won the game!";
+            winnerDiv.style.color = "red";
+          }
+          winnerDiv.style.display = "block";
+          resetBtn.style.display = "block";
+          scissorsbtn.style.display = "none";
+          rockbtn.style.display = "none";
+          paperbtn.style.display = "none";
+        }
+
+        resetBtn.addEventListener("click", function () {
+          playerScore = 0;
+          computerScore = 0;
+          const pScore = document.querySelector(".playerCount");
+          const cScore = document.querySelector(".computerCount");
+          cScore.textContent = computerScore;
+          pScore.textContent = playerScore;
+          resetBtn.style.display = "none";
+          scissorsbtn.style.display = "block";
+          rockbtn.style.display = "block";
+          paperbtn.style.display = "block";
+          winnerDiv.style.display = "none";
+        });
       });
     });
   }
@@ -120,7 +151,6 @@ const game = () => {
     }
   }
 
-  function reset() {}
   playGame();
 };
 
