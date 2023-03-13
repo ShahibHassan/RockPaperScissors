@@ -32,9 +32,11 @@ const game = () => {
           if (playerScore === 5) {
             winnerDiv.textContent = "You won the game!";
             winnerDiv.style.color = "green";
+            winnerDiv.style.backgroundColor = "black";
           } else {
             winnerDiv.textContent = "Computer won the game!";
             winnerDiv.style.color = "red";
+            winnerDiv.style.backgroundColor = "black";
           }
           scissorsbtn.style.display = "none";
           rockbtn.style.display = "none";
